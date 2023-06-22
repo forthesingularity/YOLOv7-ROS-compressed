@@ -1,0 +1,22 @@
+<launch>pose_class_MLP2.py
+    <node pkg="yolov7_ros" type="detect_poseb2.py" name="detect" output="screen"  ns="yolov7">
+        <!-- Download the official weights from the original repo -->
+        <!-- 7 OK, yolov7-w6 OK, 7x too slow,e6e too slow, -->
+        <param name="weights" type="str" value="$(find yolov7_ros)/weights/yolov7-w6-pose-o.pt" />
+        <param name="pretrained_MLP" type="str" value="$(find yolov7_ros)/weights/pose_class_MLP_min_max.pt"/>
+        <param name="keyboard_input_topic" type="str" value="/keyop/teleop" />
+        <!-- topic name to subscribe to -->
+        <param name="img_topic" type="str" value="/camera/color/image_raw" />
+        <!-- topic name for the detection output -->
+        <param name="out_img_topic" type="str" value="yolov7_hpe" />
+        <!-- topic name for the detection output -->
+        <param name="skeleton_keypoints_out_topic" type="str" value="yolov7_hpe_skeletons" />
+        <!-- Output Queue size -->
+        <param name="queue_size" type="int" value="1" />
+        <!-- flag whether to also publish image with the visualized detections -->
+        <param name="visualize" type="bool" value="False" />
+        <!-- 'cuda' or 'cpu' -->
+        <param name="device" type="str" value="cuda" />
+    </node>
+</launch>
+        <!-- pose_class_MLP -->
